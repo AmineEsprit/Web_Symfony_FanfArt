@@ -1,0 +1,117 @@
+Client:
+    type: entity
+    table: client
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+        username:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            id: true
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        numtel:
+            type: string
+            nullable: false
+            length: 55
+            options:
+                fixed: false
+        pwd:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        code:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+        etat:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                default: '''Non Verifier'''
+            column: Etat
+        nom:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+        prenom:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+        datenai:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+        pays:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+        adresse:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+                default: 'NULL'
+        abones:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+                default: '''nan'''
+        abonnement:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+                default: '''nan'''
+        imgprofil:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+                default: '''nan'''
+            column: imgProfil
+        imgverif:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+                default: '''nan'''
+            column: imgVerif
+    lifecycleCallbacks: {  }

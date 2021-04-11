@@ -1,0 +1,46 @@
+LigneCommande:
+    type: entity
+    table: ligne_commande
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        commandeid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: commandeId
+        produitid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: produitId
+        quantite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        prixunitaire:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+            column: prixUnitaire
+        nom:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

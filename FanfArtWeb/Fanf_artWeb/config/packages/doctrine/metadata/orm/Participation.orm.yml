@@ -1,0 +1,40 @@
+Participation:
+    type: entity
+    table: participation
+    id:
+        idPart:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_part
+            generator:
+                strategy: IDENTITY
+    fields:
+        idBp:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_bp
+        idUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_user
+        commentPart:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: comment_part
+        tel:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

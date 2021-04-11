@@ -1,0 +1,73 @@
+BonPlan:
+    type: entity
+    table: bon_plan
+    indexes:
+        id_user:
+            columns:
+                - id_user
+    id:
+        idBp:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_bp
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomBp:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+            column: nom_bp
+        typeBp:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+            column: type_bp
+        descBp:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+                default: 'NULL'
+            column: desc_bp
+        imgBp:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+            column: img_bp
+        lieuBp:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+            column: lieu_bp
+        prixBp:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            options:
+                default: 'NULL'
+            column: prix_bp
+        idUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_user
+    lifecycleCallbacks: {  }

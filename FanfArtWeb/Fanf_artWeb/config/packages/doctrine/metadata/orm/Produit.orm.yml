@@ -1,0 +1,68 @@
+Produit:
+    type: entity
+    table: produit
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        catId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: cat_id
+        imageProd:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+                default: 'NULL'
+            column: image_prod
+        nomProd:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+            column: nom_prod
+        prixProd:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 'NULL'
+            column: prix_prod
+        descriptionProd:
+            type: string
+            nullable: true
+            length: 400
+            options:
+                fixed: false
+                default: 'NULL'
+            column: description_prod
+        quantiteProd:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: 'NULL'
+            column: quantite_prod
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+    lifecycleCallbacks: {  }

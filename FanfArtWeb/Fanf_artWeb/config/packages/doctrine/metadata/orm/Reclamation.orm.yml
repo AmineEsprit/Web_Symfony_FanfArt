@@ -1,0 +1,53 @@
+Reclamation:
+    type: entity
+    table: reclamation
+    id:
+        idrec:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: IDRec
+            generator:
+                strategy: IDENTITY
+    fields:
+        iduser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: IDUser
+        idprod:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: IDProd
+        typerec:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: TypeRec
+        rec:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: Rec
+        date:
+            type: string
+            nullable: true
+            length: 12
+            options:
+                fixed: false
+                default: 'NULL'
+            column: Date
+        status:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

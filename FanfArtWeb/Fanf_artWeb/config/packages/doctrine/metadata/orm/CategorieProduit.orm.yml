@@ -1,0 +1,30 @@
+CategorieProduit:
+    type: entity
+    table: categorie_produit
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomCat:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+                default: 'NULL'
+            column: nom_cat
+        descriptionCat:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+                default: 'NULL'
+            column: description_cat
+    lifecycleCallbacks: {  }

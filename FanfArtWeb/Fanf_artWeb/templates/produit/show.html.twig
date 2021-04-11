@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<title>Produit</title>
+
+{% block body %}
+    <h1>Produit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>CatId</th>
+                <td>{{ produit.catId }}</td>
+            </tr>
+            <tr>
+                <th>ImageProd</th>
+                <td>{{ produit.imageProd }}</td>
+            </tr>
+            <tr>
+                <th>NomProd</th>
+                <td>{{ produit.nomProd }}</td>
+            </tr>
+            <tr>
+                <th>PrixProd</th>
+                <td>{{ produit.prixProd }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionProd</th>
+                <td>{{ produit.descriptionProd }}</td>
+            </tr>
+            <tr>
+                <th>QuantiteProd</th>
+                <td>{{ produit.quantiteProd }}</td>
+            </tr>
+            <tr>
+                <th>UserId</th>
+                <td>{{ produit.userId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_index') }}">back to list</a>
+
+    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+
+    {{ include('produit/_delete_form.html.twig') }}
+{% endblock %}

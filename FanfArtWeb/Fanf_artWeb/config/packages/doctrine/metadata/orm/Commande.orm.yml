@@ -1,0 +1,53 @@
+Commande:
+    type: entity
+    table: commande
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: userId
+        date:
+            type: datetime
+            nullable: false
+            options:
+                default: current_timestamp()
+        etat:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '1'
+        totalcommandes:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+            column: totalCommandes
+        nbproduits:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: nbProduits
+        username:
+            type: string
+            nullable: true
+            length: 40
+            options:
+                fixed: false
+                default: 'NULL'
+    lifecycleCallbacks: {  }
