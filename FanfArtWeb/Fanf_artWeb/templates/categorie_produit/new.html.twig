@@ -1,0 +1,9 @@
+{% extends 'baseBack.html.twig' %}
+{% block title %}Mes produits{% endblock %}
+{% block body %}
+    <h1>Create new CategorieProduit</h1>
+
+    {{ include('categorie_produit/_form.html.twig') }}
+
+    <a href="{{ path('categorie_produit_index') }}">back to list</a>
+{% endblock %}

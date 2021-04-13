@@ -63,5 +63,82 @@ class Reclamation
      */
     private $status;
 
+    public function getIdrec(): ?int
+    {
+        return $this->idrec;
+    }
+
+    public function getIduser(): ?int
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(int $iduser): self
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    public function getIdprod(): ?int
+    {
+        return $this->idprod;
+    }
+
+    public function setIdprod(int $idprod): self
+    {
+        $this->idprod = $idprod;
+
+        return $this;
+    }
+
+    public function getTyperec(): ?int
+    {
+        return $this->typerec;
+    }
+
+    public function setTyperec(int $typerec): self
+    {
+        $this->typerec = $typerec;
+
+        return $this;
+    }
+
+    public function getRec(): ?string
+    {
+        return $this->rec;
+    }
+
+    public function setRec(string $rec): self
+    {
+        $this->rec = $rec;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
 
 }

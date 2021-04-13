@@ -56,5 +56,70 @@ class LigneCommande
      */
     private $nom;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCommandeid(): ?int
+    {
+        return $this->commandeid;
+    }
+
+    public function setCommandeid(int $commandeid): self
+    {
+        $this->commandeid = $commandeid;
+
+        return $this;
+    }
+
+    public function getProduitid(): ?int
+    {
+        return $this->produitid;
+    }
+
+    public function setProduitid(int $produitid): self
+    {
+        $this->produitid = $produitid;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): self
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getPrixunitaire(): ?float
+    {
+        return $this->prixunitaire;
+    }
+
+    public function setPrixunitaire(float $prixunitaire): self
+    {
+        $this->prixunitaire = $prixunitaire;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
 
 }

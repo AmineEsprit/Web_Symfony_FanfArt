@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produit
  *
  * @ORM\Table(name="produit", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
 class Produit
 {
@@ -32,6 +33,7 @@ class Produit
      * @var string|null
      *
      * @ORM\Column(name="image_prod", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @Assert\Image()
      */
     private $imageProd = 'NULL';
 
@@ -39,6 +41,13 @@ class Produit
      * @var string|null
      *
      * @ORM\Column(name="nom_prod", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * Assert\NotBlank(message="Le champ nom est obligatoire")
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 50,
+     *     minMessage = "Le nom doit contenir aux minimum 5 carracteres",
+     *     maxMessage = "Le nom doit contenir au maximum 50 carracteres"
+     * )
      */
     private $nomProd = 'NULL';
 
@@ -46,6 +55,11 @@ class Produit
      * @var int|null
      *
      * @ORM\Column(name="prix_prod", type="integer", nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank(message="Le champ prix est obligatoire")
+     * @Assert\GreaterThan(
+     *     value=0,
+     *     message="Le prix doit être supérieur à 0"
+     * )
      */
     private $prixProd = NULL;
 
@@ -53,6 +67,7 @@ class Produit
      * @var string|null
      *
      * @ORM\Column(name="description_prod", type="string", length=400, nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank(message="Le champ description est obligatoire")
      */
     private $descriptionProd = 'NULL';
 
@@ -60,6 +75,12 @@ class Produit
      * @var int|null
      *
      * @ORM\Column(name="quantite_prod", type="integer", nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank(message="Le champ quantite est obligatoire")
+     * @Assert\GreaterThan(
+     *     value=0,
+     *     message="La quantite doit être supérieure à 0"
+     * )
+     *
      */
     private $quantiteProd = NULL;
 
@@ -69,6 +90,97 @@ class Produit
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
+
+
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCatId(): ?int
+    {
+        return $this->catId;
+    }
+
+    public function setCatId(int $catId): self
+    {
+        $this->catId = $catId;
+
+        return $this;
+    }
+
+    public function getImageProd(): ?string
+    {
+        return $this->imageProd;
+    }
+
+    public function setImageProd(?string $imageProd): self
+    {
+        $this->imageProd = $imageProd;
+
+        return $this;
+    }
+
+    public function getNomProd(): ?string
+    {
+        return $this->nomProd;
+    }
+
+    public function setNomProd(?string $nomProd): self
+    {
+        $this->nomProd = $nomProd;
+
+        return $this;
+    }
+
+    public function getPrixProd(): ?int
+    {
+        return $this->prixProd;
+    }
+
+    public function setPrixProd(?int $prixProd): self
+    {
+        $this->prixProd = $prixProd;
+
+        return $this;
+    }
+
+    public function getDescriptionProd(): ?string
+    {
+        return $this->descriptionProd;
+    }
+
+    public function setDescriptionProd(?string $descriptionProd): self
+    {
+        $this->descriptionProd = $descriptionProd;
+
+        return $this;
+    }
+
+    public function getQuantiteProd(): ?int
+    {
+        return $this->quantiteProd;
+    }
+
+    public function setQuantiteProd(?int $quantiteProd): self
+    {
+        $this->quantiteProd = $quantiteProd;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(int $userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
 
 
 }

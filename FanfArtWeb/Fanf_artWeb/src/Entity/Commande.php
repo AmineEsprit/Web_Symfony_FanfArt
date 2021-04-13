@@ -63,5 +63,82 @@ class Commande
      */
     private $username = 'NULL';
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUserid(): ?int
+    {
+        return $this->userid;
+    }
+
+    public function setUserid(int $userid): self
+    {
+        $this->userid = $userid;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEtat(): ?int
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(int $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getTotalcommandes(): ?float
+    {
+        return $this->totalcommandes;
+    }
+
+    public function setTotalcommandes(float $totalcommandes): self
+    {
+        $this->totalcommandes = $totalcommandes;
+
+        return $this;
+    }
+
+    public function getNbproduits(): ?int
+    {
+        return $this->nbproduits;
+    }
+
+    public function setNbproduits(int $nbproduits): self
+    {
+        $this->nbproduits = $nbproduits;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(?string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
 
 }

@@ -29,7 +29,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="produit_new", methods={"GET","POST"})
+     * @Route("/newProduit", name="produit_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {

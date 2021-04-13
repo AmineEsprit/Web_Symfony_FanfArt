@@ -49,5 +49,58 @@ class Participation
      */
     private $tel;
 
+    public function getIdPart(): ?int
+    {
+        return $this->idPart;
+    }
+
+    public function getIdBp(): ?int
+    {
+        return $this->idBp;
+    }
+
+    public function setIdBp(int $idBp): self
+    {
+        $this->idBp = $idBp;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(int $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getCommentPart(): ?string
+    {
+        return $this->commentPart;
+    }
+
+    public function setCommentPart(string $commentPart): self
+    {
+        $this->commentPart = $commentPart;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(string $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
 
 }

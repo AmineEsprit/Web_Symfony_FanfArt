@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CategorieProduit
  *
  * @ORM\Table(name="categorie_produit")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CategorieProduitRepository")
  */
 class CategorieProduit
 {
@@ -34,6 +34,35 @@ class CategorieProduit
      * @ORM\Column(name="description_cat", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
     private $descriptionCat = 'NULL';
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNomCat(): ?string
+    {
+        return $this->nomCat;
+    }
+
+    public function setNomCat(?string $nomCat): self
+    {
+        $this->nomCat = $nomCat;
+
+        return $this;
+    }
+
+    public function getDescriptionCat(): ?string
+    {
+        return $this->descriptionCat;
+    }
+
+    public function setDescriptionCat(?string $descriptionCat): self
+    {
+        $this->descriptionCat = $descriptionCat;
+
+        return $this;
+    }
 
 
 }

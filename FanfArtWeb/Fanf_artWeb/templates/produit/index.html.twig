@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+{% extends 'baseFront.html.twig' %}
 
-<title>Produit index</title>
-
+{% block title %}Produit{% endblock %}
 {% block body %}
     <h1>Produit index</h1>
 
@@ -45,3 +44,5 @@
 
     <a href="{{ path('produit_new') }}">Create new</a>
 {% endblock %}
+
+

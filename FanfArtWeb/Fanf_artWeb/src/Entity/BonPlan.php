@@ -70,5 +70,94 @@ class BonPlan
      */
     private $idUser;
 
+    public function getIdBp(): ?int
+    {
+        return $this->idBp;
+    }
+
+    public function getNomBp(): ?string
+    {
+        return $this->nomBp;
+    }
+
+    public function setNomBp(?string $nomBp): self
+    {
+        $this->nomBp = $nomBp;
+
+        return $this;
+    }
+
+    public function getTypeBp(): ?string
+    {
+        return $this->typeBp;
+    }
+
+    public function setTypeBp(?string $typeBp): self
+    {
+        $this->typeBp = $typeBp;
+
+        return $this;
+    }
+
+    public function getDescBp(): ?string
+    {
+        return $this->descBp;
+    }
+
+    public function setDescBp(?string $descBp): self
+    {
+        $this->descBp = $descBp;
+
+        return $this;
+    }
+
+    public function getImgBp(): ?string
+    {
+        return $this->imgBp;
+    }
+
+    public function setImgBp(?string $imgBp): self
+    {
+        $this->imgBp = $imgBp;
+
+        return $this;
+    }
+
+    public function getLieuBp(): ?string
+    {
+        return $this->lieuBp;
+    }
+
+    public function setLieuBp(?string $lieuBp): self
+    {
+        $this->lieuBp = $lieuBp;
+
+        return $this;
+    }
+
+    public function getPrixBp(): ?float
+    {
+        return $this->prixBp;
+    }
+
+    public function setPrixBp(?float $prixBp): self
+    {
+        $this->prixBp = $prixBp;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(int $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
 
 }
