@@ -1,372 +1,360 @@
-/*---------------------------------------------------------------------
-    File Name: custom.js
----------------------------------------------------------------------*/
+ (function($) {
 
-$(function () {
+ 	"use strict";
+	$(document).ready(function() {
+	 
+		//jQuery for page scrolling feature - requires jQuery Easing plugin
+	
+			$('a.page-scroll').on('click', function(event) {
+				var $anchor = $(this);
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top
+				}, 1500, 'easeInOutExpo');
+				event.preventDefault();
+			});
+	
 
-	"use strict";
+		
+		//LightCase
+		
+			$('a[data-rel^=lightcase]').lightcase();
+		
 
-	/* Preloader
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	setTimeout(function () {
-		$('.loader_bg').fadeToggle();
-	}, 1500);
-
-	/* JQuery Menu
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		$('header nav').meanmenu();
-	});
-
-	/* Tooltip
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-
-	/* sticky
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		$(".sticky-wrapper-header").sticky({ topSpacing: 0 });
-	});
-
-	/* Mouseover
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		$(".main-menu ul li.megamenu").mouseover(function () {
-			if (!$(this).parent().hasClass("#wrapper")) {
-				$("#wrapper").addClass('overlay');
+		//Js code for search box 
+		
+			$(".first_click").on("click", function(){
+				$(".menu-right-option").addClass("search_box");	 
+			});
+			$(".second_click").on("click", function(){
+				$(".menu-right-option").removeClass("search_box"); 
+			});	
+			
+		
+		//countdown 
+        $('.counter').counterUp({
+            delay: 10,
+            time: 1000
+        });
+		
+		
+			
+		
+		//Sponsors swiper
+		
+		var swiper = new Swiper('.sponsors-container', {
+			pagination: '.swiper-pagination',
+			slidesPerView: 4,
+			spaceBetween: 20,
+			autoplay: 3000,
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			 breakpoints: {
+				1024: {
+					slidesPerView: 3,
+					spaceBetween: 20
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 30
+				},
+				640: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				400: {
+					slidesPerView: 1,
+					spaceBetween: 10
+				}
 			}
 		});
-		$(".main-menu ul li.megamenu").mouseleave(function () {
-			$("#wrapper").removeClass('overlay');
+		
+		
+		//testimonial swiper
+		
+		var swiper = new Swiper('.testimonial-container', {
+			pagination: '.swiper-pagination',
+			slidesPerView: 3,
+			spaceBetween: 20,
+			autoplay: 3000,
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			 breakpoints: {
+				1024: {
+					slidesPerView: 3,
+					spaceBetween: 20
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 30
+				},
+				640: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				400: {
+					slidesPerView: 1,
+					spaceBetween: 10
+				}
+			}
 		});
-	});
-
-	/* NiceScroll
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(".brand-box").niceScroll({
-		cursorcolor: "#9b9b9c",
-	});
-
-	/* NiceSelect
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		$('select').niceSelect();
-	});
-
-	/* OwlCarousel - Blog Post slider
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		var owl = $('.carousel-slider-post');
-		owl.owlCarousel({
-			items: 1,
-			loop: true,
-			margin: 10,
-			autoplay: true,
-			autoplayTimeout: 3000,
-			autoplayHoverPause: true
+		
+		
+		//people say container swiper
+		
+		var swiper = new Swiper('.people-say-container', {
+			pagination: '.swiper-pagination',
+			slidesPerView: 1,
+			spaceBetween: 25,
+			autoplay: false,
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			 breakpoints: {
+				1024: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				768: {
+					slidesPerView: 1,
+					spaceBetween: 30
+				},
+				640: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				400: {
+					slidesPerView: 1,
+					spaceBetween: 10
+				}
+			}
 		});
-	});
+		
+		//Pre-Loader
+	
+			
+			$("#loading").delay(2000).fadeOut(500);
+			$("#loading-center").on("click",function() {
+			$("#loading").fadeOut(500);
+			});
+		
+		
+		
+		//Scroll Top Top 
+		
+		var link,
+		toggleScrollToTopLink = function(){
+			
+			if($("body").scrollTop() > 0 || $("html").scrollTop() > 0){
+				link.fadeIn(400);
+			}else{
+				link.fadeOut(400);
+			}
+			
+		};
+		
+			link = $(".scroll-img");
+			
+			$(window).scroll(toggleScrollToTopLink);
+			
+			toggleScrollToTopLink();
+			
+			link.on("click", function(){
+				
+				$("body").animate({scrollTop: 0});
+				$("html").animate({scrollTop: 0});
+				
+			});
+	
+		
+		//Menu Fixed Top
+		
+			var fixed_top = $(".menu-scroll");
+
+			$(window).on('scroll', function() {
+				
+				if( $(this).scrollTop() > 100 ){	
+					fixed_top.addClass("menu-fixed animated fadeInDown");
+				}
+				else{
+					fixed_top.removeClass("menu-fixed animated fadeInDown");
+				}
+				
+			});
+			
+	
+			//Pricing Slider
+		
+			$('.nstSlider').nstSlider({
+				"left_grip_selector": ".leftGrip",
+				"right_grip_selector": ".rightGrip",
+				"value_bar_selector": ".bar",
+				"value_changed_callback": function(cause, leftValue, rightValue) {
+					$(this).parent().find('.leftLabel').text(leftValue);
+					$(this).parent().find('.rightLabel').text(rightValue);
+				}
+			});
+
+			
+		
+		
+		
+	//Flex Slider
+			
+		$(window).load(function() {
+		  // The slider being synced must be initialized first
+		  $('#carousel').flexslider({
+			animation: "slide",
+			controlNav: false,
+			animationLoop: false,
+			slideshow: false,
+			itemWidth: 74,
+			itemMargin: 5,
+			asNavFor: '#slider'
+		  });
+		 
+		  $('#slider').flexslider({
+			animation: "slide",
+			controlNav: false,
+			animationLoop: false,
+			slideshow: false,
+			sync: "#carousel"
+		  });
+		});
+		
+		
+
+	//nst Slider
+	
+		$('.nstSlider').nstSlider({
+			"left_grip_selector": ".leftGrip",
+			"right_grip_selector": ".rightGrip",
+			"value_bar_selector": ".bar",
+			"value_changed_callback": function(cause, leftValue, rightValue) {
+				$(this).parent().find('.leftLabel').text(leftValue);
+				$(this).parent().find('.rightLabel').text(rightValue);
+			}
+		});
+        
+
+
+
+
+    //Sidebar Menu
+        $(".color-btn").on("click", function () {
+            $(".box-style").toggleClass('open')
+        });
+
+
+        
+
+        $(".boxed-btn").on("click", function () {
+            $("body").addClass('boxed')
+        });
+
+
+        $(".wide-btn").on("click", function () {
+            $("body").removeClass('boxed')
+        });
+
+        $(".rtl-btn").on("click", function () {
+            $("body").addClass('rtl');
+            var body = document.querySelector("body"); 
+            body.setAttribute("dir", "rtl");
+        });
+
+
+        $(".ltl-btn").on("click", function () {
+            $("body").removeClass('rtl');
+            var body = document.querySelector("body"); 
+            body.setAttribute("dir", "ltl");
+        });
+
+
+
+
+        jQuery(document).ready(function(){
+	        jQuery(".bg-1").click(function(){            
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/01.jpg) no-repeat fixed","background-size":"cover" });
+	            jQuery("body").addClass("boxed");
+	        });
+	        jQuery(".bg-2").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/02.jpg) no-repeat fixed","background-size":"cover"});
+	        });
+	        jQuery(".bg-3").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/03.jpg) no-repeat fixed","background-size":"cover" });
+	        });
+	        jQuery(".bg-4").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/04.jpg) no-repeat fixed","background-size":"cover"});
+	        });
+	        jQuery(".bg-5").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/05.jpg) no-repeat fixed","background-size":"cover"});
+	        });
+	        jQuery(".bg-6").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/06.jpg) no-repeat fixed","background-size":"cover"});
+	        });
+	        jQuery(".bg-7").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/07.jpg) no-repeat fixed","background-size":"cover"});
+	        });   
+	        jQuery(".bg-8").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/08.jpg) no-repeat fixed","background-size":"cover"});
+	        });      
+	    });
+
+	    jQuery(document).ready(function(){      
+	        jQuery(".pt-1").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/01.png) repeat fixed"});
+	        });
+	        jQuery(".pt-2").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/02.png) repeat fixed"});
+	        });
+	        jQuery(".pt-3").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/03.png) repeat fixed" });
+	        });
+	        jQuery(".pt-4").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/04.png) repeat fixed"});
+	        });
+	        jQuery(".pt-5").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/05.png) repeat fixed"});
+	        });
+	        jQuery(".pt-6").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/06.png) repeat fixed"});
+	        });
+	        jQuery(".pt-7").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/07.png) repeat fixed"});
+	        });
+	        jQuery(".pt-8").click(function(){
+	            jQuery("body").addClass("boxed");
+	            jQuery("body").css({"background":"url(https://www.codexcoder.com/images/auror/pt-image/08.png) repeat fixed"});
+	        });
+	    });
+        
+
+
+		
+	});	
+
+})(jQuery);
+
+
+
 
 
 	
-	/* OwlCarousel - Banner Rotator Slider
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		var owl = $('.banner-rotator-slider');
-		owl.owlCarousel({
-			items: 1,
-			loop: true,
-			margin: 10,
-			nav: true,
-			dots: false,
-			navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-			autoplay: true,
-			autoplayTimeout: 3000,
-			autoplayHoverPause: true
-		});
-	});
-
-	/* OwlCarousel - Product Slider
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		var owl = $('#product-in-slider');
-		owl.owlCarousel({
-			loop: true,
-			nav: true,
-			margin: 10,
-			navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-			responsive: {
-				0: {
-					items: 1
-				},
-				600: {
-					items: 2
-				},
-				960: {
-					items: 3
-				},
-				1200: {
-					items: 4
-				}
-			}
-		});
-		owl.on('mousewheel', '.owl-stage', function (e) {
-			if (e.deltaY > 0) {
-				owl.trigger('next.owl');
-			} else {
-				owl.trigger('prev.owl');
-			}
-			e.preventDefault();
-		});
-	});
-
-	/* Scroll to Top
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(window).on('scroll', function () {
-		scroll = $(window).scrollTop();
-		if (scroll >= 100) {
-			$("#back-to-top").addClass('b-show_scrollBut')
-		} else {
-			$("#back-to-top").removeClass('b-show_scrollBut')
-		}
-	});
-	$("#back-to-top").on("click", function () {
-		$('body,html').animate({
-			scrollTop: 0
-		}, 1000);
-	});
-
-	/* Contact-form
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	$.validator.setDefaults({
-		submitHandler: function () {
-			alert("submitted!");
-		}
-	});
-
-	$(document).ready(function () {
-		$("#contact-form").validate({
-			rules: {
-				firstname: "required",
-				email: {
-					required: true,
-					email: true
-				},
-				lastname: "required",
-				message: "required",
-				agree: "required"
-			},
-			messages: {
-				firstname: "Please enter your firstname",
-				email: "Please enter a valid email address",
-				lastname: "Please enter your lastname",
-				username: {
-					required: "Please enter a username",
-					minlength: "Your username must consist of at least 2 characters"
-				},
-				message: "Please enter your Message",
-				agree: "Please accept our policy"
-			},
-			errorElement: "div",
-			errorPlacement: function (error, element) {
-				// Add the `help-block` class to the error element
-				error.addClass("help-block");
-
-				if (element.prop("type") === "checkbox") {
-					error.insertAfter(element.parent("input"));
-				} else {
-					error.insertAfter(element);
-				}
-			},
-			highlight: function (element, errorClass, validClass) {
-				$(element).parents(".col-md-4, .col-md-12").addClass("has-error").removeClass("has-success");
-			},
-			unhighlight: function (element, errorClass, validClass) {
-				$(element).parents(".col-md-4, .col-md-12").addClass("has-success").removeClass("has-error");
-			}
-		});
-	});
-
-	/* heroslider
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	var swiper = new Swiper('.heroslider', {
-		spaceBetween: 30,
-		centeredSlides: true,
-		slidesPerView: 'auto',
-		paginationClickable: true,
-		loop: true,
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction: false,
-		},
-		pagination: {
-			el: '.swiper-pagination',
-			clickable: true,
-			dynamicBullets: true
-		},
-	});
 
 
-	/* Product Filters
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	var swiper = new Swiper('.swiper-product-filters', {
-		slidesPerView: 3,
-		slidesPerColumn: 2,
-		spaceBetween: 30,
-		breakpoints: {
-			1024: {
-				slidesPerView: 3,
-				spaceBetween: 30,
-			},
-			768: {
-				slidesPerView: 2,
-				spaceBetween: 30,
-				slidesPerColumn: 1,
-			},
-			640: {
-				slidesPerView: 2,
-				spaceBetween: 20,
-				slidesPerColumn: 1,
-			},
-			480: {
-				slidesPerView: 1,
-				spaceBetween: 10,
-				slidesPerColumn: 1,
-			}
-		},
-		pagination: {
-			el: '.swiper-pagination',
-			clickable: true,
-			dynamicBullets: true
-		}
-	});
-
-	/* Countdown
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$('[data-countdown]').each(function () {
-		var $this = $(this),
-			finalDate = $(this).data('countdown');
-		$this.countdown(finalDate, function (event) {
-			var $this = $(this).html(event.strftime(''
-				+ '<div class="time-bar"><span class="time-box">%w</span> <span class="line-b">weeks</span></div> '
-				+ '<div class="time-bar"><span class="time-box">%d</span> <span class="line-b">days</span></div> '
-				+ '<div class="time-bar"><span class="time-box">%H</span> <span class="line-b">hr</span></div> '
-				+ '<div class="time-bar"><span class="time-box">%M</span> <span class="line-b">min</span></div> '
-				+ '<div class="time-bar"><span class="time-box">%S</span> <span class="line-b">sec</span></div>'));
-		});
-	});
-
-	/* Deal Slider
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$('.deal-slider').slick({
-		dots: false,
-		infinite: false,
-		prevArrow: '.previous-deal',
-		nextArrow: '.next-deal',
-		speed: 500,
-		slidesToShow: 3,
-		slidesToScroll: 3,
-		infinite: false,
-		responsive: [{
-			breakpoint: 1024,
-			settings: {
-				slidesToShow: 3,
-				slidesToScroll: 2,
-				infinite: true,
-				dots: false
-			}
-		}, {
-			breakpoint: 768,
-			settings: {
-				slidesToShow: 2,
-				slidesToScroll: 2
-			}
-		}, {
-			breakpoint: 480,
-			settings: {
-				slidesToShow: 1,
-				slidesToScroll: 1
-			}
-		}]
-	});
-
-	/* News Slider
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$('#news-slider').slick({
-		dots: false,
-		infinite: false,
-		prevArrow: '.previous',
-		nextArrow: '.next',
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		responsive: [{
-			breakpoint: 1024,
-			settings: {
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				infinite: true,
-				dots: false
-			}
-		}, {
-			breakpoint: 600,
-			settings: {
-				slidesToShow: 1,
-				slidesToScroll: 1
-			}
-		}, {
-			breakpoint: 480,
-			settings: {
-				slidesToShow: 1,
-				slidesToScroll: 1
-			}
-		}]
-	});
-
-	/* Fancybox
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(".fancybox").fancybox({
-		maxWidth: 1200,
-		maxHeight: 600,
-		width: '70%',
-		height: '70%',
-	});
-
-	/* Toggle sidebar
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-
-	$(document).ready(function () {
-		$('#sidebarCollapse').on('click', function () {
-			$('#sidebar').toggleClass('active');
-			$(this).toggleClass('active');
-		});
-	});
-
-	/* Product slider 
-	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	// optional
-	$('#blogCarousel').carousel({
-		interval: 5000
-	});
-
-
-});

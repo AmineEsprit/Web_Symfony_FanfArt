@@ -33,7 +33,7 @@ class Produit
      * @var string|null
      *
      * @ORM\Column(name="image_prod", type="string", length=100, nullable=true, options={"default"="NULL"})
-     * @Assert\Image()
+     *
      */
     private $imageProd = 'NULL';
 
@@ -90,6 +90,12 @@ class Produit
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
+
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
 
 
@@ -181,6 +187,50 @@ class Produit
 
         return $this;
     }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->imageProd
+            ? null
+            : $this->getUploadRootDir().'/'.$this->imageProd;
+    }
+    public function getWebPath()
+    {
+        return null===$this->imageProd ? null : $this->getUploadDir().'/'.$this->imageProd;
+    }
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+    protected function getUploadDir()
+    {
+        return 'images';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    public function UploadProfilePicture()
+    {
+        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
+        $this->imageProd=$this->file->getClientOriginalName();
+        $this->file=null;
+    }
+
+
 
 
 }

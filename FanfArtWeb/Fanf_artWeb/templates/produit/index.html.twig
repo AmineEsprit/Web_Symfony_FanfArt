@@ -30,8 +30,8 @@
                 <td>{{ produit.quantiteProd }}</td>
                 <td>{{ produit.userId }}</td>
                 <td>
-                    <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+                    <a class="btn btn-default" href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
+                    <a class="btn btn-danger" href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
