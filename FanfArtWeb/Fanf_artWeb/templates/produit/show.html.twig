@@ -1,4 +1,4 @@
-{% extends 'baseFront.html.twig' %}
+{#{% extends 'baseFront.html.twig' %}
 {% block title %}Mes produits{% endblock %}
 
 {% block body %}
@@ -46,4 +46,52 @@
     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
 
     {{ include('produit/_delete_form.html.twig') }}
+{% endblock %} #}
+
+{% extends 'baseFront.html.twig' %}
+
+{% block body %}
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="font-size: 20px;"> Produit numéro {{ produit.id }} </strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="vue-lists">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul style="font-size: 16px;">
+                                            <li>
+                                                <strong> Nom du produit : </strong> {{ produit.nomProd }}
+                                            </li>
+                                            <li>  <strong> Prix du produit : </strong> {{ produit.prixProd }}</li>
+                                            <li>  <strong> Description du produit : </strong> {{ produit.descriptionProd }}</li>
+                                            <li>  <strong> Quantité du produit : </strong> {{ produit.quantiteProd }}
+                                            </li>
+                                            <li>  <strong> Catégorie du produit : </strong> {{ produit.categorie.nomCat }}</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <table>
+                                <tr>
+                                    <td>          <a href="{{ path('produit_edit', { 'id': produit.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                    </td>
+                                    <td>
+                                        {{ form_start(delete_form) }}
+                                        <input type="submit" value="Delete" class="btn btn-danger btn-xs">
+                                        {{ form_end(delete_form) }}</td>
+                                </tr>
+                            </table>
+                        </div></div></div></div></div></div>
+    <div>
+        <a href="{{ path('produit_index') }}">Liste des produits</a>
+    </div>
 {% endblock %}
+

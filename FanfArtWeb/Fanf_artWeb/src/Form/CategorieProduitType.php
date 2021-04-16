@@ -9,18 +9,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategorieProduitType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('nomCat')
-            ->add('descriptionCat')
-        ;
+        $builder->add('nomCat')->add('descriptionCat');
     }
-
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => CategorieProduit::class,
-        ]);
+        $resolver->setDefaults(array(
+            'data_class' => 'App\Entity\CategorieProduit'
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'gestionproduit_categorieproduit';
     }
 }

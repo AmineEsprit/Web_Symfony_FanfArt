@@ -24,10 +24,11 @@ class Produit
 
     /**
      * @var int
-     *
+     * @ORM\ManyToOne(targetEntity="CategorieProduit")
+     * @ORM\JoinColumn(name="cat_id",referencedColumnName="id")
      * @ORM\Column(name="cat_id", type="integer", nullable=false)
      */
-    private $catId;
+    private $categorie;
 
     /**
      * @var string|null
@@ -104,17 +105,6 @@ class Produit
         return $this->id;
     }
 
-    public function getCatId(): ?int
-    {
-        return $this->catId;
-    }
-
-    public function setCatId(int $catId): self
-    {
-        $this->catId = $catId;
-
-        return $this;
-    }
 
     public function getImageProd(): ?string
     {
@@ -228,6 +218,18 @@ class Produit
         $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
         $this->imageProd=$this->file->getClientOriginalName();
         $this->file=null;
+    }
+
+    public function getCategorie(): ?int
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(int $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
     }
 
 

@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
-use GestionProduitBundle\Entity\CategorieProduit;
-use GestionProduitBundle\Entity\CommentaireProduit;
-use GestionProduitBundle\Entity\RatingProduit;
+use App\Entity\CategorieProduit;
+use App\Entity\CommentaireProduit;
+use App\Entity\RatingProduit;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,11 +72,11 @@ class ProduitController extends AbstractController
      */
     public function edit(Request $request, Produit $produit): Response
     {
-        $deleteForm = $this->createDeleteForm($produit);
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
+        /*$deleteForm = $this->createDeleteForm($produit);
+        $editForm = $this->createForm(ProduitType::class, $produit);
+        $editForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
             $produit->UploadProfilePicture();
             $this->getDoctrine()->getManager()->flush();
 
@@ -85,9 +85,25 @@ class ProduitController extends AbstractController
 
         return $this->render('produit/edit.html.twig', [
             'produit' => $produit,
-            'form' => $form->createView(),
+            'form_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ]);
+        ]);*/
+        $deleteForm = $this->createDeleteForm($produit);
+        $editForm = $this->createForm('App\Form\ProduitType', $produit);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $produit->UploadProfilePicture();
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('produit_edit', array('id' => $produit->getId()));
+        }
+
+        return $this->render('produit/edit.html.twig', array(
+            'produit' => $produit,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**
@@ -170,7 +186,7 @@ class ProduitController extends AbstractController
         else
             $listeproduits = $em->getRepository('GestionProduitBundle:Produit')->findAll();
         $em2=$this->getDoctrine()->getManager();
-        $categories=$em2->getRepository('GestionProduitBundle:CategorieProduit')->findAll();
+        $categories=$em2->getRepository('App:CategorieProduit')->findAll();
         $produits  = $this->get('knp_paginator')->paginate(
             $listeproduits,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
@@ -265,8 +281,8 @@ class ProduitController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $em2=$this->getDoctrine()->getManager();
-        $categories=$em2->getRepository('GestionProduitBundle:CategorieProduit')->findAll();
-        $listeproduits = $em->getRepository('GestionProduitBundle:Produit')->findByCategorie( $em->getRepository(CategorieProduit::class)->find($id));
+        $categories=$em2->getRepository('App:CategorieProduit')->findAll();
+        $listeproduits = $em->getRepository('App:Produit')->findByCategorie( $em->getRepository(CategorieProduit::class)->find($id));
         $produits  = $this->get('knp_paginator')->paginate(
             $listeproduits,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,

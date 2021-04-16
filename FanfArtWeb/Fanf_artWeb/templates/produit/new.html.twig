@@ -1,4 +1,4 @@
- {% extends 'baseFront.html.twig' %}
+{#  {% extends 'baseFront.html.twig' %}
 {% block title %}Mes produits{% endblock %}
 
 {% block body %}
@@ -7,5 +7,96 @@
     {{ include('produit/_form.html.twig') }}
 
     <a href="{{ path('produit_index') }}">back to list</a>
-{% endblock %}
+{% endblock %} #}
 
+{% extends 'baseFront.html.twig' %}
+
+{% block body %}
+
+<div class="card-header">
+
+</div>
+<div class="card-header">
+    <strong> Ajouter un produit</strong> Détails
+</div>
+<div class="card-body card-block">
+    {{ form_start(form,{ 'attr': {'novalidate': 'nonvalidate'} }) }}
+    <div class="my-custom-class-for-errors">
+
+    </div>
+    <div class="row form-group">
+        <div class="col col-md-3"><label class=" form-control-label">Image du produit  </label></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.file,{'attr': { 'data-position':'bottom right'  } }  ) }}<small class="form-text text-muted"></small></div>
+        <div class="col-12 col-md-9">
+        </div>
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col col-md-3"><label class=" form-control-label">Nom du produit  </label></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.nomProd,{'attr': {'data-position':'bottom left'  } }  ) }}
+            <small class="form-text text-muted"></small> <span id="nom_manquant"></span></div>
+        <div class="col-12 col-md-9">
+            {{ form_errors(form.nomProd) }}
+        </div>
+
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col col-md-3"><label class=" form-control-label">Prix du produit  </label></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.prixProd,{'attr': {'data-position':'bottom left'  } }  ) }}
+            <small class="form-text text-muted"></small> <span id="nom_manquant"></span></div>
+        <div class="col-12 col-md-9">
+            {{ form_errors(form.prixProd) }}
+        </div>
+
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col col-md-3"><label class=" form-control-label">Description du produit  </label></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.descriptionProd,{'attr': { 'data-position':'bottom right'  } }  ) }}<small id="description_manquante" class="form-text text-muted">
+                <span id="description_manquante"></span>
+            </small>
+
+        </div>
+        {{ form_errors(form.descriptionProd) }}
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col col-md-3"><label class=" form-control-label">Quantite du produit  </label></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.quantiteProd,{'attr': { 'data-position':'bottom right'  } }  ) }}<small id="quantite_manquante" class="form-text text-muted"></small><span id="quantite_manquante"></span></div>
+        <div class="col-12 col-md-9">
+            {{ form_errors(form.quantiteProd) }}
+        </div>
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col col-md-3"><label class=" form-control-label">Catégorie du produit  </label></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.categorie,{'attr': {'data-position':'bottom right'  } }  ) }}<small id="categorie_manquante" class="form-text text-muted"></small> <span id="categorie_manquante"></span></div>
+
+        <div class="col-12 col-md-9">
+        </div>
+        {{ form_errors(form.categorie) }}
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary btn-sm" >
+            <i class="fa fa-dot-circle-o"></i> Envoyer
+        </button>
+        <button type="reset" class="btn btn-danger btn-sm">
+            <i class="fa fa-ban"></i> Reset
+        </button>
+    </div>
+    {{ form_end(form) }}
+
+
+    <button class="btn btn-link" type="button"></button>
+    <a href="{{ path('produit_index') }}">Liste des produits</a>
+
+
+
+    {% endblock %}
