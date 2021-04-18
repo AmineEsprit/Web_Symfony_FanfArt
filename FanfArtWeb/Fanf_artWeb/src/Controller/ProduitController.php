@@ -46,7 +46,7 @@ class ProduitController extends AbstractController
             $entityManager->persist($produit);
             $entityManager->flush();
 
-            return $this->redirectToRoute('produit_index');
+            return $this->redirectToRoute('produit_show');
         }
 
         return $this->render('produit/new.html.twig', [

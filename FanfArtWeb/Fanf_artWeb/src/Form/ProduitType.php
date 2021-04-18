@@ -22,7 +22,7 @@ class ProduitType extends AbstractType
             ->add('descriptionProd')
             ->add('quantiteProd')
             ->add('categorie',EntityType::class,['class' =>'App\Entity\CategorieProduit',
-                'choice_label' =>'nomCat',
+                'choice_label' =>'categorie',
                 'multiple' => false,
             ]);;
     }

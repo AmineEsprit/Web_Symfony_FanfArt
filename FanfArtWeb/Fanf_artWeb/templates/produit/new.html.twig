@@ -11,6 +11,7 @@
 
 {% extends 'baseFront.html.twig' %}
 
+
 {% block body %}
 
 <div class="card-header">
@@ -26,7 +27,7 @@
     </div>
     <div class="row form-group">
         <div class="col col-md-3"><label class=" form-control-label">Image du produit  </label></div>
-        <div class="col-12 col-md-9">{{ form_widget(form.file,{'attr': { 'data-position':'bottom right'  } }  ) }}<small class="form-text text-muted"></small></div>
+        <div class="col-12 col-md-9">{{ form_widget(form.file,{'attr': { 'data-position':'bottom right' , 'placeholder': 'Select image produit' } }  ) }}<small class="form-text text-muted"></small></div>
         <div class="col-12 col-md-9">
         </div>
     </div>
@@ -77,7 +78,6 @@
 
         <div class="col col-md-3"><label class=" form-control-label">Catégorie du produit  </label></div>
         <div class="col-12 col-md-9">{{ form_widget(form.categorie,{'attr': {'data-position':'bottom right'  } }  ) }}<small id="categorie_manquante" class="form-text text-muted"></small> <span id="categorie_manquante"></span></div>
-
         <div class="col-12 col-md-9">
         </div>
         {{ form_errors(form.categorie) }}
@@ -96,7 +96,5 @@
 
     <button class="btn btn-link" type="button"></button>
     <a href="{{ path('produit_index') }}">Liste des produits</a>
-
-
 
     {% endblock %}
