@@ -147,7 +147,7 @@ class ProduitController extends AbstractController
     /**
      * Creates a form to delete a produit entity.
      *
-     * @param \GestionProduitBundle\Entity\Produit $produit The produit entity
+     * @param \App\Entity\Produit $produit The produit entity
      *
      * @return \Symfony\Component\Form\Form The form
      */

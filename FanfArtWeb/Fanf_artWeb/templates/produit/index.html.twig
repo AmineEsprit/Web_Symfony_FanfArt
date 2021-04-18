@@ -1,4 +1,4 @@
-{% extends 'baseFront.html.twig' %}
+{# {% extends 'baseFront.html.twig' %}
 
 {% block title %}Produit{% endblock %}
 {% block body %}
@@ -43,6 +43,75 @@
     </table>
 
     <a href="{{ path('produit_new') }}">Create new</a>
+{% endblock %} #}
+
+{% extends 'baseFront.html.twig' %}
+
+{% block body %}
+
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title"> Listes des produits </strong>
+                        </div>
+
+                        <div class="card-body">
+                            <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+
+                                <a href="{{ path('produit_new') }}" class="btn btn-outline-secondary">Ajouter un nouveau produit</a>
+                                {# <a href="{{ path('produit_listp') }}" class="btn btn-outline-danger">Liste des produits en PDF</a> #}
+
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Image produit</th>
+                                    <th>Nom produit</th>
+                                    <th>Prix produit</th>
+                                    <th>Description produit</th>
+                                    <th>Quantite produit</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for produit in produits %}
+                                    <tr>
+                                        <td><a href="{{ path('produit_show', { 'id': produit.id }) }}" style="width:50px;height: 50px;">{{ produit.id }}</a></td>
+                                        <td> <img src="{{ asset('images/') }}{{ produit.imageProd }} "></td>
+                                        <td>{{ produit.nomProd }}</td>
+                                        <td>{{ produit.prixProd }}</td>
+                                        <td>{{ produit.descriptionProd }}</td>
+                                        <td>{{ produit.quantiteProd }}</td>
+                                        <td>
+                                            <a href="{{ path('produit_show', { 'id': produit.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                            <a href="{{ path('produit_edit', { 'id': produit.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+    <ul>
+        <li>
+
+        </li>
+    </ul>
+
+
+
 {% endblock %}
+
 
 
