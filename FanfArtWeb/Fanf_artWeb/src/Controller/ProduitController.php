@@ -7,12 +7,15 @@ use App\Form\ProduitType;
 use App\Entity\CategorieProduit;
 use App\Entity\CommentaireProduit;
 use App\Entity\RatingProduit;
+use App\Repository\ProduitRepository;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @Route("/produit")
@@ -47,7 +50,7 @@ class ProduitController extends AbstractController
             $entityManager->persist($produit);
             $entityManager->flush();
 
-            return $this->redirectToRoute('produit_show');
+            return $this->redirectToRoute('produit_show', array('id' => $produit->getId()));
         }
 
         return $this->render('produit/new.html.twig', [
@@ -125,7 +128,7 @@ class ProduitController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
 
-        $produits = $em->getRepository('GestionProduitBundle:Produit')->findAll();
+        $produits = $em->getRepository('Entity:Produit')->findAll();
         $snappy = $this->get('knp_snappy.pdf');
 
         $html = $this->renderView('produit/listp.html.twig', array(
@@ -321,7 +324,7 @@ class ProduitController extends AbstractController
                 unset($notesC[$idmp]);
             }
         }
-        return $this->render('produit/shop.html.twig', array(
+        return $this->render('shop.html.twig', array(
             'produits' => $produits,
             'categories'=>$categories,
             'notes'=>$notes,
@@ -347,25 +350,53 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/searchProduit", name="_search", methods={"GET","POST"})
+     * @Route("/searchProduit", name="search", methods={"GET","POST"})
      */
-    public function search()
+    public function search(Request $request)
     {
-        $request = $this->getRequest();
-        $data = $request->request->get('search');
+        $em=$this->getDoctrine()->getManager();
+        $produit = $em->getRepository(App/Entity/Produit::class)->findAll();
+        if($request->isMethod("POST"))
+        {
+            $nomProd = $request->get("nomProd");
+            $produit=$em->getRepository("Entity/Produit")->findBy(array('nomProd'=>$nomProd));
+        }
+        return $this->render("@produit/recherche.html.twig",array('produit'=>$produit));}
 
 
+
+        /**
+         * @Route("/searchStudentx ", name="searchStudentx")
+         */
+        public function searchStudentx(Request $request,NormalizerInterface $Normalizer)
+        {
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $requestString=$request->get('searchValue');
+        $produit = $repository->findProductbyName($requestString);
+        $jsonContent = $Normalizer->normalize($produit, 'json',['groups'=>'produit:read']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+        }
+    /**
+     * @Route("/searchprod ", name="searchp")
+     */
+        public function rechercheAction(Request $request)
+        {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT p FROM Produit p
-             WHERE p.nomProd LIKE :data')
-            ->setParameter('data', $data);
 
+        $nomProd=$request->get('nomProd');
 
-        $res = $query->getResult();
+        $produit = $em->getRepository('Produit')->findProductbyName($nomProd);
 
-        return $this->render('search.html.twig', array(
-            'res' => $res));
+        $entities  = $this->get('knp_paginator')->paginate(
+            $produit,
+            $request->query->get('page', 1)/*page number*/,
+            1/*limit per page*/
+        );
+
+        return $this->render('index.html.twig', array(
+            'entities' => $entities,
+        ));
     }
 
 }

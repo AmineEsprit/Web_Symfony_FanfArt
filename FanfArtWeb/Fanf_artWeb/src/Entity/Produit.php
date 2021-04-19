@@ -19,22 +19,20 @@ class Produit
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var int
-     * @ORM\ManyToOne(targetEntity="CategorieProduit")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategorieProduit")
      * @ORM\JoinColumn(name="cat_id",referencedColumnName="id")
-     * @ORM\Column(name="cat_id", type="integer", nullable=false)
      */
     private $categorie;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="image_prod", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="image_prod", type="string", length=255, nullable=true)
      *
      */
     private $imageProd = 'NULL';
@@ -42,41 +40,42 @@ class Produit
     /**
      * @var string|null
      *
-     * @ORM\Column(name="nom_prod", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="nom_prod", type="string", length=50, nullable=true)
      * Assert\NotBlank(message="Le champ nom est obligatoire")
      * @Assert\Length(
      *     min = 5,
      *     max = 50,
-     *     minMessage = "Le nom doit contenir aux minimum 5 carracteres",
+     *     minMessage = "Le nom doit contenir au moins 5 carracteres",
      *     maxMessage = "Le nom doit contenir au maximum 50 carracteres"
      * )
+     *
      */
-    private $nomProd = 'NULL';
+    private $nomProd ;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="prix_prod", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prix_prod", type="integer", nullable=true)
      * @Assert\NotBlank(message="Le champ prix est obligatoire")
      * @Assert\GreaterThan(
      *     value=0,
-     *     message="Le prix doit être supérieur à 0"
+     *     message="Le prix doit être supérieur à 0 DT"
      * )
      */
-    private $prixProd = NULL;
+    private $prixProd ;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_prod", type="string", length=400, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="description_prod", type="string", length=400, nullable=true)
      * @Assert\NotBlank(message="Le champ description est obligatoire")
      */
-    private $descriptionProd = 'NULL';
+    private $descriptionProd;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="quantite_prod", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="quantite_prod", type="integer", nullable=true)
      * @Assert\NotBlank(message="Le champ quantite est obligatoire")
      * @Assert\GreaterThan(
      *     value=0,
@@ -84,14 +83,14 @@ class Produit
      * )
      *
      */
-    private $quantiteProd = NULL;
+    private $quantiteProd;
 
     /**
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
-    private $userId;
+    private $userId ='11';
 
 
     /**
@@ -172,7 +171,7 @@ class Produit
         return $this->userId;
     }
 
-    public function setUserId(int $userId): self
+    public function setUserId( $userId): self
     {
         $this->userId = $userId;
 
@@ -221,12 +220,12 @@ class Produit
         $this->file=null;
     }
 
-    public function getCategorie(): ?int
+    public function getCategorie()
     {
         return $this->categorie;
     }
 
-    public function setCategorie(int $categorie): self
+    public function setCategorie( $categorie): self
     {
         $this->categorie = $categorie;
 

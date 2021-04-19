@@ -1,0 +1,51 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+{% block body %}
+    <form method="post">
+        <input type="text" name="nomProd">
+        <input type="submit" value="search" >
+    </form>
+
+    <h1>Produit rech</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>CatId</th>
+            <th>ImageProd</th>
+            <th>NomProd</th>
+            <th>PrixProd</th>
+            <th>DescriptionProd</th>
+            <th>QuantiteProd</th>
+            <th>UserId</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.categorie }}</td>
+                <td>{{ produit.imageProd }}</td>
+                <td>{{ produit.nomProd }}</td>
+                <td>{{ produit.prixProd }}</td>
+                <td>{{ produit.descriptionProd }}</td>
+                <td>{{ produit.quantiteProd }}</td>
+                <td>{{ produit.userId }}</td>
+                <td>
+                    <a class="btn btn-default" href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
+                    <a class="btn btn-danger" href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_new') }}">Create new</a>
+{% endblock %}

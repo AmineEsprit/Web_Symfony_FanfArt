@@ -17,23 +17,23 @@ class CategorieProduit
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="nom_cat", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="nom_cat", type="string", length=30, nullable=true)
      */
-    private $nomCat = 'NULL';
+    private $nomCat;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_cat", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="description_cat", type="string", length=255, nullable=true)
      */
-    private $descriptionCat = 'NULL';
+    private $descriptionCat;
 
     public function getId(): ?int
     {

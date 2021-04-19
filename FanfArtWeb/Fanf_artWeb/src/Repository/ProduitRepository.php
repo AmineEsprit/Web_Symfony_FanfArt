@@ -66,4 +66,13 @@ class ProduitRepository extends ServiceEntityRepository
 
 
     }
+
+    public function findProductbyName($nomProd){
+        return $this->createQueryBuilder('produit')
+            ->where('produit.nomProd LIKE :nomProd')
+            ->setParameter('nomProd', '%'.$nomProd.'%')
+            ->orderBy('produit.nomProd','ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

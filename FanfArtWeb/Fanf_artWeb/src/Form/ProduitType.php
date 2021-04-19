@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +26,9 @@ class ProduitType extends AbstractType
             ->add('categorie',EntityType::class,['class' =>'App\Entity\CategorieProduit',
                 'choice_label' =>'nomCat',
                 'multiple' => false,
-            ]);;
+            ])
+            ->add('userId');
+
     }
     /**
     * {@inheritdoc}
