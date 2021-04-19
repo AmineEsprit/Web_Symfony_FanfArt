@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/produit")
@@ -343,6 +344,28 @@ class ProduitController extends AbstractController
             $rating->setNote($note);
         $em->flush();
         return new Response($note);
+    }
+
+    /**
+     * @Route("/searchProduit", name="_search", methods={"GET","POST"})
+     */
+    public function search()
+    {
+        $request = $this->getRequest();
+        $data = $request->request->get('search');
+
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT p FROM Produit p
+             WHERE p.nomProd LIKE :data')
+            ->setParameter('data', $data);
+
+
+        $res = $query->getResult();
+
+        return $this->render('search.html.twig', array(
+            'res' => $res));
     }
 
 }
