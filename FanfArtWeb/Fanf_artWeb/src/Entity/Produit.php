@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Produit
  *
  * @ORM\Table(name="produit", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ *
  */
 class Produit
 {
@@ -95,8 +97,12 @@ class Produit
 
     /**
      * @Assert\File(maxSize="6000000")
+     *
+     * @var File
      */
     private $file;
+
+
 
 
 
@@ -197,20 +203,14 @@ class Produit
         return 'images';
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * @param mixed $file
-     */
-    public function setFile($file)
+    public function setfile($file)
     {
         $this->file = $file;
+    }
+
+    public function getfile()
+    {
+        return $this->file;
     }
 
     public function UploadProfilePicture()

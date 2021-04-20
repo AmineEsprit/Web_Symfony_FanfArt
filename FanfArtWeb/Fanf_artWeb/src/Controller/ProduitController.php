@@ -46,7 +46,10 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file= $produit->getfile();
+            $imageProd= md5(uniqid()).'.'.$file->guessExtension();
             $entityManager = $this->getDoctrine()->getManager();
+            $produit->UploadProfilePicture();
             $entityManager->persist($produit);
             $entityManager->flush();
 
@@ -237,7 +240,10 @@ class ProduitController extends AbstractController
         ));
     }
 
-  /*  public function detailsAction(Request $request, \src\Entity\Produit $produit, $id){
+    /**
+     * @Route("/{id}/details", name="produit_details")
+     */
+    public function detailsAction(Request $request, Produit $produit, $id){
 
         $user=$this->getUser();
         $add_comment = new CommentaireProduit();
@@ -260,10 +266,7 @@ class ProduitController extends AbstractController
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($add_comment);
                 $em->flush();
-
                 return $this->redirectToRoute('produit_details', array('id' => $produit->getId()));
-
-
             }
         }
         $rating=$em->getRepository(RatingProduit::class)->findOneBy(array('user'=>$user, 'produit'=>$produit));
@@ -279,7 +282,7 @@ class ProduitController extends AbstractController
             'comments' => $comments,
             'rating'=>$rating
         ));
-    }*/
+    }
 
     public function categoriesAction(Request $request,$id)
     {
